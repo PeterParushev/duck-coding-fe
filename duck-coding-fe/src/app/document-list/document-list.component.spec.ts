@@ -4,24 +4,15 @@ import { By } from '@angular/platform-browser';
 
 import { of } from 'rxjs';
 
-import { DocumentsService } from 'src/services/documents.service';
 import { DocumentDto } from '../models';
 import { DocumentListComponent } from './document-list.component';
 
 describe('DocumentListComponent', () => {
-  let documentServiceMock: Partial<DocumentsService>;
-
   let sut: DocumentListComponent;
-
-  beforeEach(() => {
-    documentServiceMock = {
-      getDocuments: jest.fn(() => of()),
-    };
-  });
 
   describe('as a class', () => {
     beforeEach(() => {
-      sut = new DocumentListComponent(documentServiceMock as DocumentsService);
+      sut = new DocumentListComponent();
     });
 
     it('should be initialized successfully', () => {
@@ -36,22 +27,10 @@ describe('DocumentListComponent', () => {
       TestBed.configureTestingModule({
         declarations: [DocumentListComponent],
         schemas: [NO_ERRORS_SCHEMA],
-        providers: [
-          {
-            provide: DocumentsService,
-            useValue: documentServiceMock as DocumentsService,
-          },
-        ],
       });
 
       fixture = TestBed.createComponent(DocumentListComponent);
-    });
-
-    it('should show component heading', () => {
-      const heading: DebugElement = fixture.debugElement.query(By.css('h1'));
-
-      expect(heading);
-      expect(heading.nativeElement.innerHTML).toEqual('Documents:');
+      sut = fixture.componentInstance;
     });
 
     it('should show no documents message', () => {
@@ -62,8 +41,7 @@ describe('DocumentListComponent', () => {
 
     it('should pass parameters to child components correctly', () => {
       const expectedDocuments: DocumentDto[] = getExpectedDocuments();
-      documentServiceMock.getDocuments = jest.fn(() => of(expectedDocuments));
-      fixture = TestBed.createComponent(DocumentListComponent);
+      sut.documents$ = of(expectedDocuments);
 
       fixture.detectChanges();
 
@@ -75,7 +53,6 @@ describe('DocumentListComponent', () => {
       for (const [index, listItem] of listItems.entries()) {
         expect(listItem.properties.document).toEqual(expectedDocuments[index]);
       }
-      expect(documentServiceMock.getDocuments).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -110,76 +87,6 @@ describe('DocumentListComponent', () => {
         deleted: false,
         createdAt: new Date('2021-12-11T09:09:34.535'),
         modifiedAt: new Date('2021-12-11T09:09:56.315'),
-      },
-      {
-        id: '4',
-        name: 'Scan23732',
-        size: 1652922,
-        type: 'PDF',
-        categories: ['cat_5'],
-        deleted: false,
-        createdAt: new Date('2021-12-11T09:09:34.535'),
-        modifiedAt: new Date('2021-12-11T09:09:56.315'),
-      },
-      {
-        id: '5',
-        name: 'Scan56672',
-        size: 1652922,
-        type: 'PDF',
-        categories: ['cat_3', 'cat_5'],
-        deleted: true,
-        createdAt: new Date('2021-12-12T09:09:00.125'),
-        modifiedAt: new Date('2021-12-12T09:09:23.335'),
-      },
-      {
-        id: '6',
-        name: 'Scan35682',
-        size: 165922,
-        type: 'PDF',
-        categories: ['cat_2', 'cat_3', 'cat_4'],
-        deleted: true,
-        createdAt: new Date('2021-12-12T09:12:10.155'),
-        modifiedAt: new Date('2021-12-12T09:12:20.335'),
-      },
-      {
-        id: '7',
-        name: 'Scan55623',
-        size: 16523,
-        type: 'IMAGE',
-        categories: ['cat_3'],
-        deleted: false,
-        createdAt: new Date('2022-01-05T09:12:10.155'),
-        modifiedAt: new Date('2022-01-05T09:12:10.155'),
-      },
-      {
-        id: '8',
-        name: 'Scan55623',
-        size: 16523,
-        type: 'PDF',
-        categories: ['cat_5'],
-        deleted: false,
-        createdAt: new Date('2022-01-05T09:15:40.755'),
-        modifiedAt: new Date('2022-01-05T09:15:40.755'),
-      },
-      {
-        id: '9',
-        name: 'Scan55589',
-        size: 16523,
-        type: 'PDF',
-        categories: ['cat_5'],
-        deleted: false,
-        createdAt: new Date('2022-01-06T11:45:34.435'),
-        modifiedAt: new Date('2022-01-06T11:45:34.435'),
-      },
-      {
-        id: '10',
-        name: 'Scan79589',
-        size: 462343,
-        type: 'PDF',
-        categories: ['cat_6', 'cat_34'],
-        deleted: false,
-        createdAt: new Date('2022-01-06T11:48:23.665'),
-        modifiedAt: new Date('2022-01-06T11:48:21.665'),
       },
     ];
   }
