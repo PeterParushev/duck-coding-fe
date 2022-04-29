@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DocumentListComponent } from './document-list/document-list.component';
+import { DocumentListPageComponent } from './document-list-page/document-list-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DocumentListComponent,
+    component: DocumentListPageComponent,
   },
 ];
 

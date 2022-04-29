@@ -28,6 +28,8 @@ describe('DocumentListComponent', () => {
 
     it('should be initialized successfully', () => {
       expect(sut);
+      expect(sut.documents$).not.toBeNil();
+      expect(documentServiceMock.getDocuments).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -69,11 +71,30 @@ describe('DocumentListComponent', () => {
         By.css('dcf-document-list')
       );
       expect(list);
-      expect(list.properties.documents$).toEqual(expectedObservable);
       list.properties.documents$.subscribe((actualDocuments: DocumentDto[]) => {
         expect(actualDocuments).toEqual(expectedDocuments);
         done();
       });
+    });
+
+    it('should react correctly to nameFilterChange event', () => {
+      const expectedEventPayload: string = 'expectedEventPayload';
+      sut = fixture.componentInstance;
+      sut.onNameFilterChange = jest.fn();
+      const nameFilterInput: DebugElement = fixture.debugElement.query(
+        By.css('dcf-cocument-list-filter')
+      );
+
+      nameFilterInput.triggerEventHandler(
+        'nameFilterChange',
+        expectedEventPayload
+      );
+
+      expect(sut.onNameFilterChange).toHaveBeenCalledTimes(1);
+      expect(sut.onNameFilterChange).toHaveBeenNthCalledWith(
+        1,
+        expectedEventPayload
+      );
     });
   });
 
