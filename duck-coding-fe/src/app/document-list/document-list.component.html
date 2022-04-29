@@ -1,0 +1,8 @@
+  <h1>Documents:</h1>
+  <ng-container *ngIf="documents$ | async as documents; else no_documents">
+    <div *ngFor="let document of documents" class="document-list-item">
+      <dcf-document-list-item [document]="document"></dcf-document-list-item>
+  </div>
+</ng-container>
+
+<ng-template #no_documents>No documents!</ng-template>

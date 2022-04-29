@@ -18,7 +18,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "emitDecoratorMetadata": true
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
