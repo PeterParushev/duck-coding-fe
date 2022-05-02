@@ -31,12 +31,15 @@ describe('DocumentListComponent', () => {
 
       fixture = TestBed.createComponent(DocumentListComponent);
       sut = fixture.componentInstance;
+      sut.documents$ = of([]);
     });
 
     it('should show no documents message', () => {
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.innerHTML).toContain('No documents!');
+      expect(fixture.nativeElement.innerHTML).toContain(
+        'No documents match your filter!'
+      );
     });
 
     it('should pass parameters to child components correctly', () => {

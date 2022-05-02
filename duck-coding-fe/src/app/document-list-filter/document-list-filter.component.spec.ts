@@ -79,7 +79,7 @@ describe('DocumentListFilterComponent', () => {
         By.css('input')
       );
 
-      nameFilterInput.triggerEventHandler('change', expectedEvent);
+      nameFilterInput.triggerEventHandler('input', expectedEvent);
 
       expect(sut.onNameFilterChange).toHaveBeenCalledTimes(1);
       expect(sut.onNameFilterChange).toHaveBeenNthCalledWith(1, expectedEvent);

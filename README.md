@@ -1,9 +1,11 @@
 # duck-coding-fe
 
 ## Running the application
+`npm install`
 `npm run start`
 
 ## Testing the application`
+`npm install`
 `npm run test`
 
 ## Additional thoughts

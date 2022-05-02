@@ -1,8 +1,10 @@
 
-  <ng-container *ngIf="documents$ | async as documents; else no_documents">
-    <div *ngFor="let document of documents" class="document-list-item">
-      <dcf-document-list-item [document]="document"></dcf-document-list-item>
-  </div>
+  <ng-container *ngIf="documents$ | async as documents">
+    <ng-container *ngIf="documents.length; else no_documents_match">
+      <div *ngFor="let document of documents" class="document-list-item">
+        <dcf-document-list-item [document]="document"></dcf-document-list-item>
+    </div>
+  </ng-container>
 </ng-container>
 
-<ng-template #no_documents>No documents!</ng-template>
+<ng-template #no_documents_match>No documents match your filter!</ng-template>
