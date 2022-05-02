@@ -1,18 +1,17 @@
 # duck-coding-fe
 
 ## Running the application
+
 `npm install`
 `npm run start`
 
 ## Testing the application`
+
 `npm install`
 `npm run test`
 
 ## Additional thoughts
 
-I've covered the `Acceptance criteria` I believe. 
+I had to modify the document api service to handle CORS
 
-For the `Bonus points`: 
-  The filtering by category would happen in a similar manner as filtering by name, although I'd have to keep the state of the filters in the page component in order to combine them. 
-  The sorting would happen in an sorting component that would emit to the page and sorting would happen there. 
-  For error handling I would implement the `ErrorHandler` interface and register that class in the providers of a module under the `ErrorHandler` injection token.
+I've covered the `Acceptance criteria` I believe. I also implemented filtering by categories. I implemented global error handling - it just logs the error message to the console.
