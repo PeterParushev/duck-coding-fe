@@ -9,7 +9,7 @@ export class DocumentListFilterComponent {
   public nameFilterChange: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  public categoryFilterChange: EventEmitter<string> = new EventEmitter();
+  public categoryFilterChange: EventEmitter<string> = new EventEmitter<string>();
 
   public onNameFilterChange(event: Event): void {
     if (!event?.currentTarget) {

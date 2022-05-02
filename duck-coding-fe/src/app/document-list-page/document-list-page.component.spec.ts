@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { Observable, of } from 'rxjs';
 
-import { DocumentsService } from 'src/services/documents.service';
+import { DocumentsService } from 'src/services/documents/documents.service';
 import { DocumentDto } from '../models';
 import { DocumentListPageComponent } from './document-list-page.component';
 
