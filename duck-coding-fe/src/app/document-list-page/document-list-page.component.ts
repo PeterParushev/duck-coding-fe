@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { DocumentsService } from 'src/services/documents.service';
+import { DocumentsService } from 'src/services/documents/documents.service';
 import { DocumentDto } from '../models';
 
 @Component({
